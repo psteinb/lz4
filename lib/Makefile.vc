@@ -23,18 +23,11 @@ OBJ	= \
 
 all:	liblz4_static.lib $(DLLNAME)
 
-# tif_config.h:	tif_config.vc.h
-# 	copy tif_config.vc.h tif_config.h
-
-# tiffconf.h:	tiffconf.vc.h
-# 	copy tiffconf.vc.h tiffconf.h
-
 liblz4.lib:  lz4.h $(OBJ)
-	$(AR) /out:liblz4_static.lib $(OBJ) $(LIBS)
+	$(AR) /out:liblz4_static.lib $(OBJ) 
 
 $(DLLNAME):	lz4.h $(OBJ)
-	$(LD) /debug /dll /def:libtiff.def /out:$(DLLNAME) \
-	/implib:libtiff_i.lib $(OBJ) $(LIBS)
+	$(LD) /debug /dll /def:liblz4.def /out:$(DLLNAME) $(OBJ) 
 
 clean:
 	-del *.obj
