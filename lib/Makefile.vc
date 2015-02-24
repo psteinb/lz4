@@ -1,0 +1,44 @@
+# Makefile for MS Visual C and Watcom C compilers.
+#
+# To build:
+# C:\libtiff\libtiff> nmake /f makefile.vc all
+#
+
+!INCLUDE ..\nmake.opt
+
+INCL	= -I. 
+
+# !IFDEF USE_WIN_CRT_LIB
+# OBJ_SYSDEP_MODULE = tif_unix.obj
+# !ELSE
+# OBJ_SYSDEP_MODULE = tif_win32.obj
+# !ENDIF
+
+OBJ	= \
+	lz4.obj \
+	lz4hc.obj \
+	lz4frame.obj \
+	xxhash.obj \
+	$(OBJ_SYSDEP_MODULE)
+
+all:	liblz4_static.lib $(DLLNAME)
+
+# tif_config.h:	tif_config.vc.h
+# 	copy tif_config.vc.h tif_config.h
+
+# tiffconf.h:	tiffconf.vc.h
+# 	copy tiffconf.vc.h tiffconf.h
+
+liblz4.lib:  lz4.h $(OBJ)
+	$(AR) /out:liblz4_static.lib $(OBJ) $(LIBS)
+
+$(DLLNAME):	lz4.h $(OBJ)
+	$(LD) /debug /dll /def:libtiff.def /out:$(DLLNAME) \
+	/implib:libtiff_i.lib $(OBJ) $(LIBS)
+
+clean:
+	-del *.obj
+	-del *.lib
+	-del *.dll
+	-del *.dll.manifest
+	-del *.pdb
