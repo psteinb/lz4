@@ -34,9 +34,9 @@
 #pragma once
 
 #ifdef _WIN32
-#define WIN_FUNCTION_PREFIX extern "C" __declspec(dllexport)
+#define WIN_FUNCTION_PREFIX __declspec(dllexport)
 #else
-#define WIN_FUNCTION_PREFIX extern "C"
+#define WIN_FUNCTION_PREFIX 
 #endif
 
 #if defined (__cplusplus)
