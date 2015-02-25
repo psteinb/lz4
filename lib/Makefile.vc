@@ -1,5 +1,11 @@
 # Makefile for MS Visual C and Watcom C compilers.
 #
+# This is roughly what needs to be done
+# call "%VS120COMNTOOLS%vsvars32.bat"
+# cd /d \path\to\lz4
+# cl -c lib\lz4.c lib\lz4hc.c lib\lz4frame.c lib\xxhash.c
+# lib lz4.obj lz4hc.obj lz4frame.obj xxhash.obj -OUT:liblz4.lib
+#
 # To build:
 # C:\libtiff\libtiff> nmake /f makefile.vc all
 #
@@ -27,7 +33,7 @@ liblz4.lib:  lz4.h $(OBJ)
 	$(AR) /out:liblz4_static.lib $(OBJ) 
 
 $(DLLNAME):	lz4.h $(OBJ)
-	$(LD) /debug /dll /def:liblz4.def /out:$(DLLNAME) $(OBJ) 
+	$(LD) /debug /dll /out:$(DLLNAME) $(OBJ) 
 
 clean:
 	-del *.obj
