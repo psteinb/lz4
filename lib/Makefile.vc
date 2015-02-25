@@ -29,7 +29,7 @@ OBJ	= \
 
 all:	liblz4_static.lib $(DLLNAME)
 
-liblz4.lib:  lz4.h $(OBJ)
+liblz4_static.lib:  lz4.h $(OBJ)
 	$(AR) /out:liblz4_static.lib $(OBJ) 
 
 $(DLLNAME):	lz4.h $(OBJ)
