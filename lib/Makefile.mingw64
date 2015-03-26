@@ -42,7 +42,7 @@ LIBDIR?= $(PREFIX)/lib
 INCLUDEDIR=$(PREFIX)/include
 
 
-	SHARED_EXT = dll
+	SHARED_EXT_VER = dll
 
 
 CC=gcc.exe
